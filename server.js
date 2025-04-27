@@ -11,16 +11,23 @@ const app = express();
 
 // CORS Configuration to allow specific origins
 const corsOptions = {
-  origin: ['http://localhost:5174', 'http://localhost:5173','https://frontendtask-ten-virid.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Adjust methods as per your needs
-  credentials: true, // If you need to allow cookies or other credentials
+  origin: ['http://localhost:5174', 'http://localhost:5173', 'https://frontendtask-ten-virid.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Add OPTIONS method here
+  credentials: true, 
 };
-app.options('*', cors(corsOptions));
-// Middlewares
-app.use(cors(corsOptions)); // Apply CORS middleware with the specific options
+
+// Apply CORS middleware globally
+app.use(cors(corsOptions)); 
+
+// Middleware to parse JSON
 app.use(express.json());
+
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
+
+// Handle preflight requests
+app.options('*', cors(corsOptions)); // Explicitly handle OPTIONS requests
 
 // Connect MongoDB
 mongoose.connect(process.env.MONGO_URI)
@@ -33,5 +40,5 @@ app.get('/', (req, res) => {
 });
 
 // Server Listen
-const PORT = process.env.PORT || 5000 ;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
