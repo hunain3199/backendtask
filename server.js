@@ -15,7 +15,7 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Adjust methods as per your needs
   credentials: true, // If you need to allow cookies or other credentials
 };
-
+app.options('*', cors(corsOptions));
 // Middlewares
 app.use(cors(corsOptions)); // Apply CORS middleware with the specific options
 app.use(express.json());
