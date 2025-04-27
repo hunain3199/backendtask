@@ -15,7 +15,7 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Add OPTIONS method here
   credentials: true, 
 };
-
+app.options('*', cors(corsOptions));
 // Apply CORS middleware globally
 app.use(cors(corsOptions)); 
 
@@ -27,7 +27,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
 // Handle preflight requests
-app.options('*', cors(corsOptions)); // Explicitly handle OPTIONS requests
+ // Explicitly handle OPTIONS requests
 
 // Connect MongoDB
 mongoose.connect(process.env.MONGO_URI)
