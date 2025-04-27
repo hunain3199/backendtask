@@ -24,7 +24,7 @@ app.use(
       "https://frontendtask-ten-virid.vercel.app",
       
      
-      "*",
+      
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
