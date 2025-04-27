@@ -15,9 +15,27 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Add OPTIONS method here
   credentials: true, 
 };
-app.options('*', cors(corsOptions));
+
 // Apply CORS middleware globally
-app.use(cors(corsOptions)); 
+// app.use(cors(corsOptions)); 
+app.use(
+  cors({
+    origin: [
+      "https://frontendtask-ten-virid.vercel.app",
+      "http://192.168.0.114:3000;",
+      "http://192.168.0.110:3000;",
+      "https://www.oneclickdigitals.com",
+      "https://oneclickdigitals.com",
+      "https://insurance-one-click.vercel.app/",
+      "*",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ['X-Total-Count'],
+    credentials: true, // allow credentials (cookies, authorization headers )
+  })
+);
+app.options('*', cors(corsOptions));
 
 // Middleware to parse JSON
 app.use(express.json());
