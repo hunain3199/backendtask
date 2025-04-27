@@ -22,11 +22,8 @@ app.use(
   cors({
     origin: [
       "https://frontendtask-ten-virid.vercel.app",
-      "http://192.168.0.114:3000;",
-      "http://192.168.0.110:3000;",
-      "https://www.oneclickdigitals.com",
-      "https://oneclickdigitals.com",
-      "https://insurance-one-click.vercel.app/",
+      
+     
       "*",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
